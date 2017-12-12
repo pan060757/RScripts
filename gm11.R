@@ -149,11 +149,11 @@ gm <- function(X0,nums){
   fit <- c(X0[1],getPredict(length(X0),X0,a,u))
   print("拟合值：")
   print(fit)    ####给出的是除x0以外的，其它序列的预测方法
-  write.table(fit,file="F:/data.xlsx",col.names=FALSE,row.names = FALSE,append=TRUE)
+  write.table(fit,file="E:/data.xlsx",col.names=FALSE,row.names = FALSE,append=TRUE)
   print("误差率：")
   ratio <-c((X0-fit)/X0)*100
   print(ratio)
-  write.table(ratio,file="F:/data.xlsx",col.names=FALSE,row.names = FALSE,append=TRUE)
+  write.table(ratio,file="E:/data.xlsx",col.names=FALSE,row.names = FALSE,append=TRUE)
   
   ######对模型精度进行检验
   res <- c(abs(X0-fit))     ###计算残差
@@ -175,11 +175,9 @@ gm <- function(X0,nums){
   }
   print("预测值:")
   print(predict)
-  write.table(predict,file="F:/data.xlsx",col.names=FALSE,row.names = FALSE,append=TRUE)
+  write.table(predict,file="E:/data.xlsx",col.names=FALSE,row.names = FALSE,append=TRUE)
   return (predict)
 }
-
-
 
 
 
