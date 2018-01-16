@@ -34,3 +34,22 @@ errorRate
 ####对未来5年进行预测(使用2006-2015年的数据)
 predict <- Holt1(X0[1:10],5)
 predict
+
+
+#########################################################################
+############参保人数预测#################################################
+number <- read.csv("E:/毕业设计/建模结果/charge_cost/working_retired.csv",header = FALSE)
+colnames(number) <- c('year','number','working','working_number','retired','retired_number')  ###重命名
+number$number
+####指数平滑法
+####对2014年平均工资进行预测(使用2006-2013年的数据)
+predict <- Holt1(number$number[1:8],1)
+predict
+errorRate <- (predict-number$number[9])/number$number[9]*100
+errorRate
+
+
+
+
+
+
