@@ -121,6 +121,7 @@ getprob <- function(e,avg_error,S1)
         count <- count+1
       }
     }
+    print(count)
     return (count/length(e))
 }
 
@@ -153,19 +154,25 @@ gm <- function(X0,nums){
   print("误差率：")
   ratio <-c((X0-fit)/X0)*100
   print(ratio)
-  write.table(ratio,file="E:/data.xlsx",col.names=FALSE,row.names = FALSE,append=TRUE)
-  
+  # write.table(ratio,file="E:/data.xlsx",col.names=FALSE,row.names = FALSE,append=TRUE)
+  # 
   ######对模型精度进行检验
   res <- c(abs(X0-fit))     ###计算残差
-  avg_res <- sum(res)/length(X0)   ###计算平均残差
+  cat('计算残差',',',res,'\n')
+  avg_res <- sum(res)/length(X0-1)   ###计算平均残差
+  cat('计算平均残差',',',avg_res,'\n')
   avg_x <- sum(X0)/length(X0)      ###计算原始数列的平均值
-  S1 <- sqrt((sum(abs(X0-avg_x))^2)/length(X0))
+  cat('计算原始数列的平均值',',',avg_x,'\n')
+  S1 <- sqrt((sum((X0-avg_x)^2))/length(X0))
+  cat('S1',',',S1,'\n')
   #####计算小误差的概率
   P <- getprob(res,avg_res,S1)
-  print(P)
-  S2 <- sqrt((sum(abs(res-avg_res))^2)/length(X0))
+
+  S2 <- sqrt((sum((res[-1]-avg_res)^2))/(length(X0)-1))
+  cat('S2',',',S2,'\n')
   C <- S2/S1
-  print(C)
+  cat('P',',',P,'\n')
+  cat('C',',',C,'\n')
   
   ###对2016-2018的数据进行预测
   predict <- c()

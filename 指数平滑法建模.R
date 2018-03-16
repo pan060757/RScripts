@@ -43,8 +43,29 @@ Holt1 <- function(data,nums)
   plot.forecast(forecast2)
 }
 
-
-
+plotForecastErrors <- function(forecasterrors)
+  
+{
+  
+  # make a red histogram of the forecast errors:
+  
+  mysd <- sd(forecasterrors)
+  
+  hist(forecasterrors, col='red', freq=FALSE)
+  
+  # freq=FALSE ensures the area under the histogram = 1
+  
+  # generate normally distributed data with mean 0 and standard deviation mysd
+  
+  mynorm <- rnorm(10000, mean=0, sd=mysd)
+  
+  myhist <- hist(mynorm, plot=FALSE)
+  
+  # plot the normal curve as a blue line on top of the histogram of forecast errors:
+  
+  points(myhist$mids, myhist$density, type='l', col='blue', lwd=2)
+  
+}
 
 
 
